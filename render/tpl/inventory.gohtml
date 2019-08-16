@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>CVE List</title>
+  </head>
+<body>
+ <h2>{{.InstanceID}}<h2>
+<table align="center" border="1" width="75%">
+<tr>
+  <th>CVE Number</th>
+  <th>Package</th>
+  <th>Severity</th>
+  <th>NIST URL</th>
+</tr>
+{{ range .CVEs.CVEs }}
+<tr>
+  <td>{{ .CVENumber }}</td>
+  <td>{{.SystemPackage}}</td>
+  <td>{{.Severity}}</td>
+  <td><a href="{{.NISTLink}}">{{.NISTLink}}</a></td>
+</tr>
+{{ end }}
+</table>
+</body>
+</html>

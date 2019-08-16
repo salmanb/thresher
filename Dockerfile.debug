@@ -1,0 +1,12 @@
+FROM golang:alpine as builder
+ENV CGO_ENABLED=0
+ADD . /go/src/github.com/salmanb/thresher
+WORKDIR /go/src/github.com/salmanb/thresher
+RUN go build -o /go/bin/thresher .
+FROM alpine:latest
+RUN apk add --update ca-certificates && rm -rf /var/cache/apk/*
+WORKDIR /go/src/app
+COPY --from=builder /go/bin/thresher .
+COPY --from=builder /go/src/github.com/salmanb/thresher/auth.json .
+COPY --from=builder /go/src/github.com/salmanb/thresher/render/tpl ./render/tpl/
+CMD [ "/bin/sh" ]
