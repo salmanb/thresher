@@ -16,6 +16,7 @@ if [[ -z ${DOCKER} ]]; then
   exit 1
 fi
 
+// required if using AWS KMS
 if [[ ! -d ${HOME}/.aws ]]; then
   echo "${HOME}/.aws does not exist. Please configure your aws cli and try again."
   exit 1
