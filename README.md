@@ -7,6 +7,6 @@ Files are output to /where/to/store/files/<YYYY-MM-DD>/<instanceid>.html
 Threatstack rate limits at 200 requests/minute. That is handled by calling a 2 minute sleep to let the window reset. 
 Threatstack API also throws 500 errors pretty often, and we purposefully do not handle those gracefully at this time.
 
-Authorization data is stored encrypted in auth.json -- KMS access is required to decrypt the file. File is encrypted with SOPS.
+Authorization data is stored encrypted in auth.json. File is encrypted with SOPS, using a pgp key. Can be encrypted by a cloud vendor KMS key, as well.
 
 SOPS: https://github.com/mozilla/sops
